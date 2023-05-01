@@ -88,14 +88,14 @@ def tobs():
     query_result = session.query(*sel).filter(Measurement.date >= query_date).all()
     session.close()
 
-    tobs = []
+    tobs_values = []
     for date, tobs in query_result:
         tobs_dict = {}
         tobs_dict["Date"] = date
         tobs_dict["Tobs"] = tobs
-        tobs.append(tobs_dict)
+        tobs_values.append(tobs_dict)
 
-    return jsonify(tobs)
+    return jsonify(tobs_values)
 
 @app.route('/api/v1.0/<start>')
 def tobs_start(start):
